@@ -1,1 +1,30 @@
-<p>product-details works!</p>
+<div class="row my-5" *ngIf="loading">
+    <div class="col-md-6 details">
+      <div class="image">
+        <img
+          src="{{data.image}}"
+          alt=""
+        />
+      </div>
+    </div>
+    <div class="col-md-6 details">
+      <div>
+        <h4>
+          <span>Title: </span>
+          "{{data.title}}"
+        </h4>
+        <h4>
+          <span>description: </span> 
+          "{{data.description}}"
+        </h4>
+        <h4><span>category:</span> "{{data.category}}"</h4>
+        <h4><span>rate:</span>  {{data.rating.rate}}</h4>
+        <h4><span>Count:</span> {{data.rating.count}}</h4>
+        <h4><span>Price:</span>  {{data.price}}</h4>
+      </div>
+    </div>
+  </div>
+  <div class="text-center" *ngIf="!loading">
+    <app-spinner></app-spinner>
+  </div>
+  

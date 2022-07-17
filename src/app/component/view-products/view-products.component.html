@@ -1,1 +1,18 @@
-<p>view-products works!</p>
+
+<div routerLink="/details/{{data.id}}" class="Item">
+    <div class="image text-center" >
+      <img src="{{data.image}}" alt="" />
+    </div>
+    <div class="caption text-center">
+      <h5>{{ data.title }}</h5>
+      <p class="description">{{ data.description }}</p>
+      <p><strong>price:</strong> ${{ data.price }}</p>
+    </div>
+  </div>
+  <div class="button text-center">
+    <button class="btn btn-danger w-100" *ngIf="changeButton" (click)="changeButton=false">Add To Cart</button>
+    <form action="" class="form w-100" *ngIf="!changeButton" >
+      <input type="number" class="text-center form-control" name="amount" [(ngModel)]="amount">
+      <button type="button" class="btn btn-danger w-100" (click)="addCart();changeButton=true">Add To Cart</button>
+    </form>
+  </div>

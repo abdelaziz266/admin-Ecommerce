@@ -1,0 +1,47 @@
+.card {
+    margin: 25px;
+    padding: 10px;
+    .product-have {
+      margin: 0.5rem;
+    }
+    tbody {
+      td {
+        text-align: center;
+        vertical-align: center;
+        img {
+          width: 80px;
+          height: 80px;
+        }
+      }
+    }
+  }
+  .center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  
+    h4,
+    h6 {
+      font-weight: 400;
+    }
+  }
+  
+  div {
+    .product-have {
+      justify-content: space-between;
+    }
+    .card-table {
+      overflow: auto;
+      text-align: center;
+      .btn-danger {
+        background-color: #dc3545 !important;
+      }
+    }
+    .order-now {
+      padding-right: 2rem;
+      justify-content: space-between;
+    }
+  }
+  

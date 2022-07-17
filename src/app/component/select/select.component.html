@@ -1,1 +1,8 @@
-<p>select works!</p>
+<label for="">{{labelData}} </label>
+  <br>
+  <select name="" id="" (change)="optionChange($event)">
+    <option value="All">All</option>
+    <option value="{{ option }}" *ngFor="let option of data">
+      {{ option }}
+    </option>
+  </select>

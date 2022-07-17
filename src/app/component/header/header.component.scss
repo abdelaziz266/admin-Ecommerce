@@ -1,0 +1,29 @@
+nav {
+    background: linear-gradient(to right, #950b0b, #440606);
+  
+    .navbar-brand {
+      span {
+        font-size: large;
+        margin-left: 0.5rem;
+      }
+      i {
+        font-size: larger;
+      }
+    }
+    .navbar-collapse {
+      flex-grow: 0;
+    }
+  
+    form {
+      input {
+        margin-top: 0.2rem;
+      }
+    }
+  
+    @media screen and (max-width: 991px) {
+      .navbar-collapse {
+        text-align: center;
+      }
+    }
+  }
+  
