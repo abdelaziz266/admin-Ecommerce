@@ -25,9 +25,9 @@ export class ApiService {
   }
 
   // Post Api
-  postOrder(model:any)
+  addProduct(model:any)
   {
-    return this._HttpClient.post(environment.baseApi+ 'carts',model)
+    return this._HttpClient.post(environment.baseApi+ 'products',model)
   }
 
 

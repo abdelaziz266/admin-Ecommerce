@@ -1,68 +1,67 @@
 <div class="card">
-    <div class="card-table">
-      <div class="card-product">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Quantity</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of carts; let index = index">
-              <td>{{ item.date | date: "shortDate" }}</td>
-              <td>{{ item.products.length }}</td>
-              <td>
-                <button class="btn btn-danger" (click)="deleteCart(item.id)">
-                  <i class="fas fa-trash-alt"></i> Delete
-                </button>
-                <button
-                  class="btn btn-primary"
-                  data-toggle="modal"
-                  data-target="#viewCart"
-                  (click)="viewCart(index)"
-                >
-                  <i class="fa-solid fa-eye"></i> view
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+  <div class="card-table">
+    <div class="card-product">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Quantity</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of carts; let index = index">
+            <td>{{ item.date | date: "shortDate" }}</td>
+            <td>{{ item.products.length }}</td>
+            <td>
+              <button class="btn btn-danger" (click)="deleteCart(item.id)">
+                <i class="fas fa-trash-alt"></i> Delete
+              </button>
+              <button
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#viewCart"
+                (click)="viewCart(index)"
+              >
+                <i class="fa-solid fa-eye"></i> view
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
-  
-  <!-- Modal -->
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="viewCart"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
   <div
-    class="modal fade"
-    id="viewCart"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true"
+    class="modal-dialog modal-dialog-centered"
+    style="max-width: 900px !important"
   >
-    <div
-      class="modal-dialog modal-dialog-centered"
-      role="document"
-      style="max-width: 900px !important"
-    >
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="card">
           <div class="card-table">
             <div class="card-product">
-              <table class="table">
+              <table class="table table-responsive">
                 <thead>
                   <tr>
                     <th>Product Image</th>
@@ -73,27 +72,23 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let item of carts">
-                    <td><img src="" alt="" /></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                  <tr *ngFor="let item of products">
+                    <td><img src="{{ item.item.image }}" alt="" /></td>
+                    <td>{{ item.item.title }}</td>
+                    <td>{{ item.item.price }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td> $ {{ item.item.price * item.quantity }}</td>
                   </tr>
                 </tbody>
               </table>
             </div>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">
-            Close
-          </button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal">
-            Save changes
-          </button>
-        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
       </div>
     </div>
   </div>
-  
+</div>

@@ -12,7 +12,7 @@ import { SelectComponent } from './component/select/select.component';
 import { SpinnerComponent } from './component/spinner/spinner.component';
 import { ViewProductsComponent } from './component/view-products/view-products.component';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import { FormsModule } from '@angular/forms';
     ProductsComponent,
     SelectComponent,
     SpinnerComponent,
-    ViewProductsComponent
+    ViewProductsComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,9 +31,10 @@ import { FormsModule } from '@angular/forms';
     NgbModule,
     HttpClientModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -6,6 +6,7 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit {
+  products:any[]=[]
   carts: any[] = [];
   details:any;
   constructor(private _ApiService: ApiService) {}
@@ -28,7 +29,12 @@ export class CartComponent implements OnInit {
   }
 
   viewCart(index: number) {
+    this.products=[]
     this.details=this.carts[index];
-    console.log(this.details)
+    for (let x in this.details.products) {
+      this._ApiService.getProductdetails(this.details.products[x].productId).subscribe((res)=>{
+        this.products.push({item:res, quantity:this.details.products[x].quantity})
+      })
+    }
   }
 }

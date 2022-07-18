@@ -1,22 +1,222 @@
-<div class="w-100 select">
-    <app-select
-      [labelData]="'Categories:'"
-      [data]="dataCategories"
-      (selectValue)="filterCategory($event)"
-    ></app-select>
-  </div>
-  
-  <div class="row allCart" *ngIf="!loading">
-    <div
-      class="card col-sm-6 col-md-4 col-lg-3"
-      *ngFor="let item of dataProducts"
-      
-    >
-      <app-view-products [data]="item" (item)="addToCart($event)"></app-view-products>
-      
+<div class="card">
+  <div class="container">
+    <div class="m-2">
+      <app-select
+        [labelData]="'Categories:'"
+        [data]="dataCategories"
+        (selectValue)="filterCategory($event)"
+      ></app-select>
+    </div>
+    <div class="m-2">
+      <button
+        class="btn btn-success"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+      >
+        Add Product
+      </button>
+    </div>
+
+    <div class="card-table">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <td></td>
+            <td>Name</td>
+            <td>Category</td>
+            <td>Price</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of dataProducts">
+            <td><img src="{{ item.image }}" alt="" /></td>
+            <td>{{ item.title }}</td>
+            <td>{{ item.category }}</td>
+            <td>$ {{ item.price }}</td>
+            <td>
+              <button
+                class="btn btn-warning"
+                data-bs-toggle="modal"
+                data-bs-target="#Update"
+                (click)="UpdateProduct(item)"
+              >
+                Update
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
-  <div class="spinner text-center w-100" *ngIf="loading">
-    <app-spinner></app-spinner>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div
+    class="modal-dialog modal-dialog-centered"
+    style="max-width: 900px !important"
+  >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="form">
+          <div class="row">
+            <div class="col-md-4 col-sm-12">
+              <label for="title">title:</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Title"
+                formControlName="title"
+              />
+            </div>
+            <div class="col-md-4 col-sm-12">
+              <label for="price">Price:</label>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Price"
+                formControlName="price"
+              />
+            </div>
+            <div class="col-md-4 col-sm-12">
+              <app-select
+                [labelData]="'Categories:'"
+                [data]="dataCategories"
+                (selectValue)="addProductSelect($event)"
+                [all]="false"
+                [select]="form.value.category"
+              ></app-select>
+            </div>
+            <div class="col-md-4 col-sm-12">
+              <label for="image">Image</label>
+              <img src="{{ base64 }}" alt="" />
+              <input
+                type="file"
+                class="form-control"
+                (change)="changeImg($event)"
+              />
+            </div>
+            <div class="col-md-8 col-sm-12">
+              <label for="des">Description</label>
+              <textarea
+                placeholder=" Type Here..."
+                class="form-control"
+                formControlName="description"
+              ></textarea>
+            </div>
+          </div>
+          <div class="dbtn m-3">
+            <button
+              type="button"
+              class="btn btn-success"
+              (click)="addProduct()"
+            >
+              Add Product
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
-  
+</div>
+
+<!-- Modal Update-->
+<div
+  class="modal fade"
+  id="Update"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div
+    class="modal-dialog modal-dialog-centered"
+    style="max-width: 900px !important"
+  >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="form">
+          <div class="row">
+            <div class="col-md-4 col-sm-12">
+              <label for="title">title:</label>
+              <input
+                type="text"
+                formControlName="title"
+                class="form-control"
+                placeholder="Title"
+              />
+            </div>
+            <div class="col-md-4 col-sm-12">
+              <label for="price">Price:</label>
+              <input
+                type="number"
+                formControlName="price"
+                class="form-control"
+                placeholder="Price"
+              />
+            </div>
+            <div class="col-md-4 col-sm-12">
+              <app-select
+                [labelData]="'Categories:'"
+                [data]="dataCategories"
+                (selectValue)="addProductSelect($event)"
+                [all]="false"
+                [select]="form.value.category"
+              ></app-select>
+            </div>
+            <div class="col-md-4 col-sm-12">
+              <label for="image">Image</label>
+              <img src="{{ base64 }}" alt="" />
+              <input
+                type="file"
+                class="form-control"
+                (change)="changeImg($event)"
+              />
+            </div>
+            <div class="col-md-8 col-sm-12">
+              <label for="des">Description</label>
+              <textarea
+                placeholder=" Type Here..."
+                class="form-control"
+                formControlName="description"
+              ></textarea>
+            </div>
+          </div>
+          <div class="dbtn m-3">
+            <button
+              type="button"
+              class="btn btn-success"
+              [disabled]="!form.valid"
+              (click)="succUpdateProduct()"
+            >
+              Update Product
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

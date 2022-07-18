@@ -8,6 +8,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class SelectComponent implements OnInit {
   @Input() labelData: any;
   @Input() data: any[] = [];
+  @Input() select:any=''
+  @Input() all: boolean = true;
   @Output() selectValue = new EventEmitter();
   constructor() {}
 
